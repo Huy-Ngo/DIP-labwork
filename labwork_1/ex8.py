@@ -2,7 +2,7 @@ from cv2 import imread, cvtColor, COLOR_BGR2RGB, Laplacian, Sobel, CV_32F
 import matplotlib.pyplot as plt
 
 img = imread('../resource/target.png')
-img_rgb = cvtColor(img, COLOR_BGR2RGB)  # OpenCV uses BGR so we have to convert for it to look normal
+img_rgb = cvtColor(img, COLOR_BGR2RGB)
 
 img_lap = Laplacian(img_rgb, CV_32F)
 img_sob = Sobel(img_rgb, CV_32F, 1, 1)
