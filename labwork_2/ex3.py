@@ -18,12 +18,17 @@ img_rgb = cvtColor(img, COLOR_BGR2RGB)
 
 Z = img_rgb.reshape((-1, 3))
 
-ret, label, center = kmeans(float32(Z), 8, None, criteria, 8, KMEANS_RANDOM_CENTERS)
+ret, label, center = kmeans(float32(Z), 2, None, criteria, 8, KMEANS_RANDOM_CENTERS)
 
 center = uint8(center)
 res = center[label.flatten()]
 img_kmean = res.reshape((img_rgb.shape))
 
+ret, label, center = kmeans(float32(Z), 4, None, criteria, 8, KMEANS_RANDOM_CENTERS)
+
+center = uint8(center)
+res = center[label.flatten()]
+img_kmean_4 = res.reshape((img_rgb.shape))
 
 img_rgb_threshold = inRange(img_rgb, array([10, 0, 5]), array([100, 100, 100]))
 
@@ -32,18 +37,22 @@ plt.title('Original image')
 plt.imshow(img_rgb)
 
 plt.subplot(232)
-plt.title('K-means clustering')
+plt.title('K-means clustering (K=2)')
 plt.imshow(img_kmean)
 
 plt.subplot(233)
+plt.title('K-means clustering (K=4)')
+plt.imshow(img_kmean_4)
+
+plt.subplot(234)
 plt.title('Thresholded color image')
 plt.imshow(img_rgb_threshold, cmap='gray')
 
-plt.subplot(223)
+plt.subplot(235)
 plt.title('Simple thresholding (gray)')
 plt.imshow(threshold(img_gray, 100), cmap='gray')
 
-plt.subplot(224)
+plt.subplot(236)
 plt.title('Adaptive threshold (gray)')
 plt.imshow(adaptiveThreshold(img_gray, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 25, 12), cmap='gray')
 
