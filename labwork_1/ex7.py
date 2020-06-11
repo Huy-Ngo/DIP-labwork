@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 img = imread('../resource/target.png')
 img_rgb = cvtColor(img, COLOR_BGR2RGB)
 
-img_avg = blur(img_rgb, (10, 10))
-img_gss = blur(img_rgb, (10, 10), 10)
-img_med = blur(img_rgb, (10, 10))
+img_avg = blur(img_rgb, (9, 9))
+img_gss = GaussianBlur(img_rgb, (9, 9), 10)
+img_med = medianBlur(img_rgb, 9)
 
 plt.subplot(221)
 plt.title('Original image')
